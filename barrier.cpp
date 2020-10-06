@@ -9,6 +9,16 @@ using namespace std;
 #define SHARED 1
 
 
+int counter =0;
+pthread_mutex_t barrier_mutex;
+
+void barrier_simple(){
+    pthread_mutex_lock(&barrier_mutex);
+    counter++;
+    pthread_mutex_unlock(&barrier_mutex);
+    while(counter<NUM_THREADS);
+}
+
 pthread_mutex_t bar_mutex;
 pthread_cond_t bar_cond;
 int bar_count = 0;
